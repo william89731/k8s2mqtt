@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: k8s2mqtt
+  name: k8s2mqtt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s2mqtt
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: k8s2mqtt
+    spec:
+      containers:
+        - env:
+            - name: HOST
+              value: <HOST>
+            - name: KUBECONFIG
+              value: /kube/config
+            - name: PASSWORD
+              value: <PASSWORD>
+            - name: TZ
+              value: Europe/Rome
+            - name: USERNAME
+              value: <USERNAME>
+          image: william1608/k8s2mqtt:1.0
+          imagePullPolicy: IfNotPresent
+          name: k8s2mqtt
+          volumeMounts:
+            - mountPath: /kube/config
+              name: config
+      restartPolicy: Always
+      volumes:
+        - name: config
+          hostPath:
+            path: /home/<USER>/.kube/config
