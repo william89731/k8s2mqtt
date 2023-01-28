@@ -8,7 +8,7 @@
 [![donate](https://img.shields.io/badge/donate-wango-blue)](https://www.wango.org/donate.aspx)
 
 # k8s2mqtt
-kubernetes client listening to warning events; and publish to broker mqtt.
+Kubernetes client listening to warning events; and publish to broker mqtt.
 
  ```requirements``` :
  - [kubernetes cluster](https://kubernetes.io/)
@@ -16,4 +16,22 @@ kubernetes client listening to warning events; and publish to broker mqtt.
  
  ```deploy``` :
  
- deploy minimal configuration. check [here]()
+ Deploy minimal configuration. check [here](https://github.com/william89731/k8s2mqtt/blob/main/k8s2mqtt.yml) 
+ 
+ ![image](https://user-images.githubusercontent.com/68069659/215288439-36a9fd96-1583-4e73-af46-1d77137a53b2.png)
+
+Tested the repository with trivy operator. See [here](https://github.com/william89731/trivy-operator)
+
+![image](https://user-images.githubusercontent.com/68069659/215288554-45d63d3c-fc95-4a28-987c-5611384c3dae.png)
+
+Payload published:
+
+![image](https://user-images.githubusercontent.com/68069659/215288962-71db640b-4b61-4d76-bd53-0eb8aa45960d.png)
+
+Send notification to telegram (or another service):
+
+![image](https://user-images.githubusercontent.com/68069659/215289170-16a8f4cd-d29e-4b35-94ec-23ba273d591d.png)
+
+
+
+
