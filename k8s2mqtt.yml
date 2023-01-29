@@ -28,7 +28,7 @@ spec:
               value: Europe/Rome
             - name: USERNAME
               value: <USERNAME>
-          image: william1608/k8s2mqtt:1.0
+          image: william1608/k8s2mqtt:1.1
           imagePullPolicy: IfNotPresent
           name: k8s2mqtt
           volumeMounts:
