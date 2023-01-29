@@ -30,7 +30,8 @@ Payload published:
 
 Send notification to telegram (or another service):
 
-![image](https://user-images.githubusercontent.com/68069659/215289170-16a8f4cd-d29e-4b35-94ec-23ba273d591d.png)
+![image](https://user-images.githubusercontent.com/68069659/215355774-36f221ce-3945-433e-8371-9cdb36380eaa.png)
+
 
 
 
