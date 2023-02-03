@@ -30,7 +30,7 @@ spec:
               value: <<USERNAME>>
             - name: PORT
               value: <<PORT>>
-          image: william1608/k8s2mqtt:2.0
+          image: william1608/k8s2mqtt:2.1
           imagePullPolicy: IfNotPresent
           name: k8s2mqtt
           livenessProbe:
@@ -43,13 +43,8 @@ spec:
           volumeMounts:
             - mountPath: /kube/config
               name: config
-            - mountPath: /usr/local/bin/kubectl
-              name: kubectl
       restartPolicy: Always
       volumes:
         - name: config
           hostPath:
             path: /home/<<USER>>/.kube/config
-        - name: kubectl
-          hostPath:
-            path: /usr/local/bin/kubectl
