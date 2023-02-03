@@ -13,7 +13,6 @@ Kubernetes client listening to warning events; and publish to broker mqtt.
  ```requirements``` :
  - [kubernetes cluster](https://kubernetes.io/)
  - [broker mqtt](https://mqtt.org/)
- - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
  
  ```deploy``` :
  
