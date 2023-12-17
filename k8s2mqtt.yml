@@ -1,3 +1,14 @@
+apiVersion: v1
+kind: Secret
+metadata:  
+  name: mqtt
+type: Opaque
+data:
+  host: aG9zdA==  #echo -n 'host' | base64
+  username: dXNlcm5hbWU=  
+  password: cGFzc3dvcmQ=
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,19 +29,29 @@ spec:
     spec:
       containers:
         - env:
+            - name: TZ
+              value: Europe/Rome
             - name: HOST
-              value: <<HOST>>
+              valueFrom: 
+                secretKeyRef: 
+                  name: mqtt 
+                  key: host 
             - name: KUBECONFIG
               value: /kube/config
             - name: PASSWORD
-              value: <<PASSWORD>>
-            - name: TZ
-              value: <<TZ>>
+              valueFrom: 
+                secretKeyRef: 
+                  name: mqtt 
+                  key: password
+            
             - name: USERNAME
-              value: <<USERNAME>>
+              valueFrom: 
+                secretKeyRef: 
+                  name: mqtt 
+                  key: username
             - name: PORT
-              value: <<PORT>>
-          image: william1608/k8s2mqtt:2.3
+              value: 1883
+          image: william1608/k8s2mqtt:2.4.0
           imagePullPolicy: IfNotPresent
           name: k8s2mqtt
           livenessProbe:
@@ -47,4 +68,4 @@ spec:
       volumes:
         - name: config
           hostPath:
-            path: /home/<<USER>>/.kube/config
+            path: ~/.kube/config

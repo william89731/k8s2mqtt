@@ -14,6 +14,7 @@ Kubernetes client listening to warning events; and publish to broker mqtt.
  - [kubernetes cluster](https://kubernetes.io/)
  - [broker mqtt](https://mqtt.org/)
  
+
  ```deploy``` :
  
  Deploy minimal configuration. check [here](https://github.com/william89731/k8s2mqtt/blob/main/k8s2mqtt.yml) 
