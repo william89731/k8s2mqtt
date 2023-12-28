@@ -1,11 +1,11 @@
 {
   "name": "k8s2mqtt",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "",
   "main": "index.js",
   "node": ">=14.16",
   "scripts": {
-    "start": "node -r dotenv/config index.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "william",
