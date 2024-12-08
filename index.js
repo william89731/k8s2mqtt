@@ -35,7 +35,7 @@ const kube = textToExecute => new Promise(resolve => {
 
   command.stdout.on('data', (data) => {
     console.log(`${data}`)
-    const topic = 'k8s2mqtt/warning'
+    const topic = 'k8s2mqtt'
     client.publish(topic, data, { qos: 0, retain: false }, (error) => {
       if (error) {
         console.error(error)

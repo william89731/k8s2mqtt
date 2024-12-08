@@ -1,4 +1,4 @@
-FROM node:18.18.2-alpine3.18 as build
+FROM node:22-alpine as build
 WORKDIR /k8s
 RUN apk add --update curl --no-cache
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \

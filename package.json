@@ -1,6 +1,6 @@
 {
   "name": "k8s2mqtt",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "",
   "main": "index.js",
   "node": ">=14.16",
@@ -11,7 +11,7 @@
   "author": "william",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.3.1",
-    "mqtt": "^5.3.3"
+    "dotenv": "^16.4.7",
+    "mqtt": "^5.10.3"
   }
 }

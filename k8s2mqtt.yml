@@ -1,14 +1,12 @@
 apiVersion: v1
 kind: Secret
-metadata:  
+metadata:
   name: mqtt
 type: Opaque
 data:
-  host: aG9zdA==  #echo -n 'host' | base64
-  username: dXNlcm5hbWU=  
-  password: cGFzc3dvcmQ=
+  username: dXNlcm5hbWU=
+  password: cGFzc3dvcmQ= #echo -n 'password' | base64
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,40 +28,42 @@ spec:
             - name: TZ
               value: Europe/Rome
             - name: HOST
-              valueFrom: 
-                secretKeyRef: 
-                  name: mqtt 
-                  key: host 
+              value: "mosquitto.mosquitto.svc.cluster.local"
             - name: KUBECONFIG
-              value: /kube/config
+              value: /kube/kubeconfig
             - name: PASSWORD
-              valueFrom: 
-                secretKeyRef: 
-                  name: mqtt 
+              valueFrom:
+                secretKeyRef:
+                  name: mqtt
                   key: password
-            
+
             - name: USERNAME
-              valueFrom: 
-                secretKeyRef: 
-                  name: mqtt 
+              valueFrom:
+                secretKeyRef:
+                  name: mqtt
                   key: username
             - name: PORT
-              value: 1883
-          image: william1608/k8s2mqtt:2.4.0
+              value: "1883"
+          image: william1608/k8s2mqtt:2.4.2
           imagePullPolicy: IfNotPresent
           name: k8s2mqtt
           livenessProbe:
             exec:
               command:
-              - cat
-              - /etc/os-release
-            initialDelaySeconds: 5
+                - cat
+                - /etc/os-release
+            initialDelaySeconds: 30
             periodSeconds: 5
           volumeMounts:
-            - mountPath: /kube/config
+            - mountPath: /kube/kubeconfig
               name: config
+          resources:
+            limits:
+              memory: "100Mi"
+              cpu: "100m"
       restartPolicy: Always
       volumes:
         - name: config
-          hostPath:
-            path: ~/.kube/config
+          nfs: #you can use hostpath or other method
+            server: ip server
+            path: /path to/kubeconfig
